@@ -1,0 +1,64 @@
+/* src/components/SearchBar.css
+   Estilos del componente de búsqueda con ícono y responsividad.
+*/
+
+/* Contenedor principal */
+.search-bar {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+/* Input ocupa el espacio disponible */
+.search-input {
+  flex: 1;
+  height: 50%;
+  border: none;
+  background: transparent;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0 0.75rem;
+  outline: none;
+  border-left: 2px solid var(--border-color);
+  color: var(--title-color);
+}
+.search-input::placeholder {
+  color: var(--title-color);
+}
+
+/* Icono de lupa a la derecha */
+.search-icon {
+  height: 35px;
+  width: auto;
+  margin-right: 0.75rem;
+  cursor: pointer;
+  filter: drop-shadow(0 0 2px var(--border-color));
+}
+
+/* ----------- MEDIA QUERIES ----------- */
+
+/* Ajustes para pantallas <= 700px */
+@media (max-width: 700px) {
+  .search-input {
+    font-size: 0.9rem;
+    padding: 0 0.5rem;
+  }
+  .search-icon {
+    height: 28px;
+    margin-right: 0.5rem;
+  }
+}
+
+/* Ajustes para pantallas <= 480px */
+@media (max-width: 480px) {
+  .search-input {
+    font-size: 0.85rem;
+    padding: 0 0.4rem;
+  }
+  .search-icon {
+    height: 24px;
+    margin-right: 0.4rem;
+  }
+}

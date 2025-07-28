@@ -1,0 +1,47 @@
+/* Variables CSS para tema claro y oscuro - estilo LoL elegante */
+
+/* ========== MODO CLARO ========== */
+:root {
+  /* Colores principales */
+  --background-color:      #f9f7f2;
+  --back-filter:           #fdedc2;
+  --border-color:          #d1ab4a;  /* dorado suave para bordes */
+  --gradiante-fond:        linear-gradient(135deg, #f6f1e7 0%, #f3f0e8 100%);
+  --loading-color:         black;
+  --nav-footer-color:      #050b15;  /* dorado medio */
+  --placeholder-champs:    #d6b567;
+  --shadow-color:          rgba(0, 0, 0, 0.3); /* sombra dorada tenue */
+  --shadow-nav-txt:        rgba(171, 144, 41, 0.6);
+  --swagger-back:          rgb(235, 235, 235);
+  --text-color:            #ffffff;  /* gris muy oscuro para texto general */
+  --title-color:           #050b15;  /* azul marino oscuro para títulos */
+  --tit-champ:             #d1ab4a;
+
+  /* Login, Register, ForgotPassword */
+  --auth-bg-color:         #bebebe;
+  --auth-border-color:     #d6b567;
+  --auth-color:            #09123b;
+  --auth-text-color:       #1a283d;
+
+  /* Tipografías */
+  --font-primary:          'Cinzel', serif;
+}
+
+/* ========== MODO OSCURO ========== */
+[data-theme="dark"] {
+  /* Colores principales */
+  --background-color:      #12151f;  /* azul noche oscuro */
+  --border-color:          #a6842c;  /* dorado oscuro */
+  --gradiante-fond:        linear-gradient(135deg, #f6f1e7 0%, #f3f0e8 100%);
+  --loading-color:         white;
+  --nav-footer-color:      #000000;  /* dorado pálido */
+  --placeholder-champs:    #a6842c;
+  --shadow-color:          rgba(171, 144, 41, 0.6);
+  --shadow-nav-txt:        rgba(171, 144, 41, 0.6);
+  --text-color:            #ffffff;  /* crema claro para texto */
+  --title-color:           #ffffff;  /* dorado claro para títulos */
+  --tit-champ:             #ffffff;
+
+  /* Tipografías */
+  --font-primary:          'Cinzel', serif;
+}

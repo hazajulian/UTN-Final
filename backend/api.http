@@ -1,0 +1,180 @@
+# API HTTP Tests
+
+### 1. Register new user
+POST http://localhost:3010/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "username": "usertest",
+  "email": "example@gmail.com",
+  "password": "1234"
+}
+
+# Expected: 201 Created
+
+### 2. Login user
+POST http://localhost:3010/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "example@gmail.com",
+  "password": "1234"
+}
+
+# Expected: 200 OK (response JSON includes `token`)
+
+# Copy the returned token and paste it as <TOKEN> below
+
+### 3. Get current user profile
+GET http://localhost:3010/api/v1/auth/me
+Authorization: Bearer ffd86bb66e72c23a8cbae0d44dc3ea86ca8739be4cd183fee0a692309c7faf8b
+
+# Expected: 200 OK (returns `{ id, username, email }`)
+
+### 4. Admin: List all users
+GET http://localhost:3010/api/v1/auth/all
+Authorization: Bearer ffd86bb66e72c23a8cbae0d44dc3ea86ca8739be4cd183fee0a692309c7faf8b
+
+# Expected: 403 Forbidden (unless user isAdmin=true)
+
+### 5. Admin: Get user by ID
+GET http://localhost:3010/api/v1/auth/id/687d1deb016caf443cd5a04d
+Authorization: Bearer ffd86bb66e72c23a8cbae0d44dc3ea86ca8739be4cd183fee0a692309c7faf8b
+
+# Expected: 403 Forbidden (or 200 OK if admin and valid ID, 404 Not Found if invalid)
+
+### 6. Admin: Get user by username
+GET http://localhost:3010/api/v1/auth/username/usertest
+Authorization: Bearer ffd86bb66e72c23a8cbae0d44dc3ea86ca8739be4cd183fee0a692309c7faf8b
+
+# Expected: 403 Forbidden (or 200 OK if admin)
+
+### 7. List champions (public)
+GET http://localhost:3010/api/v1/champions?limit=20&offset=0
+
+# Expected: 200 OK (paginated list)
+
+### 8. Get champion details
+GET http://localhost:3010/api/v1/champions/ezreal
+
+# Expected: 200 OK (valid ID) or 404 Not Found (invalid)
+
+### 9. Attempt update original champion
+PATCH http://localhost:3010/api/v1/champions/ahri
+Authorization: Bearer ffd86bb66e72c23a8cbae0d44dc3ea86ca8739be4cd183fee0a692309c7faf8b
+Content-Type: application/json
+
+{
+  "title": "Intento Malicioso"
+}
+
+# Expected: 403 Forbidden
+
+### 10. Attempt delete original champion
+DELETE http://localhost:3010/api/v1/champions/thresh
+Authorization: Bearer ffd86bb66e72c23a8cbae0d44dc3ea86ca8739be4cd183fee0a692309c7faf8b
+
+# Expected: 403 Forbidden
+
+### 11. List my custom champions
+GET http://localhost:3010/api/v1/champions/user
+Authorization: Bearer ffd86bb66e72c23a8cbae0d44dc3ea86ca8739be4cd183fee0a692309c7faf8b
+
+# Expected: 200 OK (returns array of user-owned custom champions)
+
+### 12. Create custom champion
+POST http://localhost:3010/api/v1/champions
+Authorization: Bearer ffd86bb66e72c23a8cbae0d44dc3ea86ca8739be4cd183fee0a692309c7faf8b
+Content-Type: application/json
+
+{
+  "id": "MyUniqueChamp",
+  "name": "Mi Campeón",
+  "title": "El Legendario",
+  "region": "Runaterra",
+  "roles": ["Mage"],
+  "positions": ["Mid"],
+  "skins": [],
+  "iconUrl": "",
+  "splashUrl": "",
+  "lore": "Un campeón de prueba",
+  "allytips": [],
+  "enemytips": []
+}
+
+# Expected: 201 Created (returns created champion)
+
+### 13. Update custom champion
+PATCH http://localhost:3010/api/v1/champions/MyUniqueChamp
+Authorization: Bearer ffd86bb66e72c23a8cbae0d44dc3ea86ca8739be4cd183fee0a692309c7faf8b
+Content-Type: application/json
+
+{
+  "title": "Nuevo Título Custom",
+  "roles": ["Assassin"]
+}
+
+# Expected: 200 OK (returns updated champion)
+
+### 14. Delete custom champion
+DELETE http://localhost:3010/api/v1/champions/MyUniqueChamp
+Authorization: Bearer ffd86bb66e72c23a8cbae0d44dc3ea86ca8739be4cd183fee0a692309c7faf8b
+
+# Expected: 200 OK (message deleted)
+
+### 15. Change password
+PUT http://localhost:3010/api/v1/auth/password
+Authorization: Bearer ffd86bb66e72c23a8cbae0d44dc3ea86ca8739be4cd183fee0a692309c7faf8b
+Content-Type: application/json
+
+{
+  "oldPassword": "1234",
+  "newPassword": "newpass",
+  "confirmPassword": "newpass"
+}
+
+# Expected: 200 OK (password updated)
+
+### 16. Delete account
+DELETE http://localhost:3010/api/v1/auth
+Authorization: Bearer ffd86bb66e72c23a8cbae0d44dc3ea86ca8739be4cd183fee0a692309c7faf8b
+Content-Type: application/json
+
+{
+  "password": "newpass"
+}
+
+# Expected: 200 OK (account deleted)
+
+### 17. Verify login fails after deletion
+POST http://localhost:3010/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "example@gmail.com",
+  "password": "newpass"
+}
+
+# Expected: 401 Unauthorized
+
+### 18. Request password reset
+POST http://localhost:3010/api/v1/auth/forgot-password
+Content-Type: application/json
+
+{
+  "email": "example@gmail.com"
+}
+
+# Expected: 200 OK (mensaje genérico)
+
+### 19. Execute password reset
+POST http://localhost:3010/api/v1/auth/reset-password
+Content-Type: application/json
+
+{
+  "token": "48c0f4c2ab7fa50e9bc497e0a858d38711cd20c5",
+  "newPassword": "otraPass",
+  "confirmPassword": "otraPass"
+}
+
+# Expected: 200 OK (contraseña restablecida correctamente)

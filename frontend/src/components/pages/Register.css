@@ -1,0 +1,114 @@
+/* src/components/pages/Register.css
+   Estilos para la página de registro de usuario.
+   Adaptado a un tema League of Legends moderno y responsivo.
+*/
+
+/* --------- Contenedor principal --------- */
+.register-container {
+  background-color: var(--auth-color);
+  margin-top: 13rem;
+  border: 2px solid var(--auth-border-color);
+  border-radius: 10px;
+  padding: 2.5rem;
+  width: 400px;
+  max-width: 100%;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+}
+
+/* Título */
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  text-shadow: 0 0 8px var(--auth-border-color);
+}
+
+/* --------- Formulario --------- */
+.register-form label {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  position: relative;
+}
+.register-form input {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.3rem;
+  border: 1px solid #434a5e;
+  border-radius: 4px;
+  background: var(--auth-bg-color);
+  color: var(--auth-text-color);
+  font-family: var(--font-primary);
+  font-size: 1rem;
+}
+.register-form input:focus {
+  outline: none;
+  border-color: var(--auth-border-color);
+  box-shadow: 0 0 6px var(--auth-border-color);
+}
+.input-group {
+  position: relative;
+}
+
+/* Botón toggle ver/ocultar pass (heredado de input-group si lo tenés) */
+.toggle-pass-btn {
+  position: absolute;
+  right: 0.7rem;
+  top: 53%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #e0c077;
+  font-size: 0.98rem;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  padding: 0 0.4rem;
+  transition: color 0.2s;
+}
+.toggle-pass-btn:hover {
+  color: var(--auth-border-color);
+}
+
+/* --------- Errores --------- */
+.error.general {
+  background: #8b0000;
+  color: #fff;
+  padding: 0.6rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+.field-error {
+  display: block;
+  margin-top: 0.2rem;
+  color: rgb(161, 2, 2);
+  font-size: 0.85rem;
+}
+
+/* --------- Footer y botón volver --------- */
+.auth-footer {
+  margin-top: 1rem;
+  text-align: center;
+}
+.back-btn {
+  color: #e0c077;
+  text-decoration: none;
+}
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+/* --------- Responsive --------- */
+@media (max-width: 480px) {
+  .register-container {
+    margin-top: 6rem;
+    padding: 2rem 1.5rem;
+    width: 90%;
+  }
+  .register-container h2 {
+    font-size: 1.6rem;
+  }
+  .register-form label {
+    font-size: 0.9rem;
+  }
+}

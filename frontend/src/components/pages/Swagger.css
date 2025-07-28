@@ -1,0 +1,183 @@
+/* src/components/pages/Swagger.css
+   Estilos para la página de documentación Swagger UI.
+   Adaptado a tema League of Legends moderno, visual claro y responsivo.
+*/
+
+/* --------- Wrapper principal --------- */
+.swagger-wrapper {
+  min-height: 85vh;
+  padding: 32px 0;
+}
+
+/* --------- Fondo y contorno general --------- */
+.swagger-ui {
+  background-color: var(--swagger-back);
+  padding: 36px 32px 32px 32px;
+  margin: 0 auto;
+  max-width: 900px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 24px var(--shadow-color);
+  font-family: var(--font-primary); 
+}
+
+/* --------- Barra superior (logo swagger) --------- */
+.swagger-ui .topbar,
+.swagger-ui .topbar-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+  display: none !important;
+}
+
+/* --------- Títulos principales --------- */
+.swagger-ui .info {
+  color: var(--border-color);
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid var(--border-color);
+  margin-bottom: 24px;
+}
+.swagger-ui .info .title {
+  font-family: var(--font-primary);
+  color: var(--placeholder-champs);
+  letter-spacing: 1.2px;
+  font-size: 2.4rem;
+}
+.swagger-ui .info .version,
+.swagger-ui .info .sc-dkrFOg {
+  background: var(--border-color);
+  color: var(--text-color);
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+/* --------- Textos secundarios --------- */
+.swagger-ui .info .base-url,
+.swagger-ui .info .description {
+  color: var(--text-color);
+  font-size: 1.07rem;
+}
+
+/* --------- Selector de servidores --------- */
+.swagger-ui .servers-title {
+  color: var(--border-color);
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+.swagger-ui .servers {
+  background: transparent !important;
+  border-radius: 8px !important;
+  border: 1.5px solid var(--border-color);
+  padding: 8px 12px;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+.swagger-ui .servers select {
+  color: var(--text-color);
+  font-weight: bold;
+  background: var(--placeholder-champs);
+  border-radius: 8px !important;
+  border: 1.5px solid var(--border-color);
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+.swagger-ui .servers select:hover {
+  border-color: var(--tit-champ);
+}
+
+/* --------- Bloques de endpoints --------- */
+.swagger-ui .opblock.opblock-get {
+  border-left: 7px solid #1e90ff !important;
+  background: var(--lol-bg-body) !important;
+  border-radius: 16px !important;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 18px #26344b44;
+}
+.swagger-ui .opblock.opblock-get .opblock-summary-method {
+  background: linear-gradient(90deg, #1e90ff 65%, #00ffc3 100%) !important;
+  color: var(--background-color) !important;
+  border-radius: 8px 0 0 8px;
+  font-weight: bold;
+  box-shadow: 0 0 4px #1e90ff99;
+  border: 1.2px solid #00ffc3;
+}
+.swagger-ui .opblock-summary-path,
+.swagger-ui .opblock-summary-description {
+  color: var(--text-color);
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 1.06rem;
+}
+
+/* --------- Textos de esquema y modelos --------- */
+.swagger-ui .model-title,
+.swagger-ui .tab li,
+.swagger-ui .response-col_status {
+  color: var(--border-color);
+}
+
+/* --------- Fondo y borde de respuestas --------- */
+.swagger-ui .responses-wrapper {
+  background: var(--lol-bg-body);
+  border-radius: 14px;
+  border: 1.5px solid var(--border-color);
+  margin-top: 12px;
+}
+.swagger-ui .response-col_description__inner {
+  color: var(--placeholder-champs);
+}
+
+/* --------- Bloque schemas --------- */
+.swagger-ui section.models {
+  background: var(--lol-bg-body);
+  border-radius: 10px;
+  border: 1.5px solid var(--border-color);
+  margin-top: 32px;
+  box-shadow: 0 2px 12px #47331155;
+}
+
+/* --------- Colores en los tags --------- */
+.swagger-ui .opblock-tag {
+  color: var(--border-color);
+  font-family: var(--font-primary);
+  font-size: 1.2rem !important;
+}
+
+/* --------- Quita el borde feo al enfocar --------- */
+.swagger-ui input:focus, 
+.swagger-ui select:focus, 
+.swagger-ui button:focus {
+  outline: 2px solid var(--border-color) !important;
+  box-shadow: 0 0 6px var(--border-color)55 !important;
+}
+
+/* --------- Scrollbar custom --------- */
+.swagger-ui ::-webkit-scrollbar {
+  width: 8px;
+  background: var(--lol-bg-body);
+  border-radius: 8px;
+}
+.swagger-ui ::-webkit-scrollbar-thumb {
+  background: var(--border-color)bb;
+  border-radius: 8px;
+}
+
+/* --------- Responsive --------- */
+@media (max-width: 900px) {
+  .swagger-wrapper{
+    padding-inline: 1rem;
+  }
+  .swagger-ui { 
+    padding: 10px; 
+    max-width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .swagger-ui { 
+    padding: 2px; 
+    max-width: 100%;
+  }
+  .swagger-wrapper { 
+    padding: 2px 0; 
+  }
+}

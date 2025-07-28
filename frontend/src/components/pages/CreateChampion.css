@@ -1,0 +1,332 @@
+/* src/components/pages/CreateChampion.css
+   Estilos principales para el formulario de creación/edición de campeones custom,
+   adaptados al tema League of Legends. Incluye diseño responsivo, campos, cards, y UI amigable.
+*/
+
+/* Contenedor principal */
+.cc-wrap {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding-inline: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-family: var(--font-primary);
+  color: var(--text-color);
+}
+
+/* Mensaje de error */
+.cc-error {
+  background: #5a1f1f;
+  color: var(--placeholder-champs);
+  padding: 0.75rem;
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* Título */
+.cc-title {
+  text-align: center;
+  padding-block: 0.5rem;
+  font-size: 3rem;
+  color: var(--title-color);
+}
+
+/* Tarjetas de secciones */
+.cc-card {
+  background-color: var(--nav-footer-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 0 4px 24px var(--shadow-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.cc-card h2 {
+  margin: 0;
+  color: var(--border-color);
+}
+
+/* Labels y campos */
+.cc-card label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+}
+.cc-card input,
+.cc-card textarea,
+.cc-card select {
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  background: var(--nav-footer-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-color);
+  font: inherit;
+  transition: border-color 0.2s;
+}
+.cc-card input:focus,
+.cc-card textarea:focus,
+.cc-card select:focus {
+  border-color: var(--placeholder-champs);
+  outline: none;
+}
+.cc-card textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+/* Muestra dificultad */
+.cc-diff-display {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  text-align: center;
+  color: var(--text-color);
+}
+
+/* Fieldset para roles y posiciones */
+.cc-fieldset {
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding-block: 0.75rem;
+  padding-inline: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.5rem 1rem;
+}
+.cc-fieldset legend {
+  padding-inline: 0.5rem;
+  font-weight: 600;
+  color: var(--border-color);
+  margin-bottom: 0.5rem;
+}
+
+/* Checkbox custom visual */
+.cc-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  user-select: none;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+.cc-checkbox input {
+  accent-color: var(--border-color);
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+/* Checkbox visual mejorada */
+.cc-checkbox input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid var(--border-color);
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.cc-checkbox input[type="checkbox"]:hover {
+  border-color: var(--tit-champ);
+}
+.cc-checkbox input[type="checkbox"]:checked {
+  background-color: var(--tit-champ);
+  border-color: var(--tit-champ);
+}
+.cc-checkbox input[type="checkbox"]:checked::after {
+  content: 'X';
+  position: absolute;
+  top: 1px;
+  left: 3px;
+  font-size: 14px;
+  color: var(--nav-footer-color);
+  user-select: none;
+}
+
+/* Selector de filtro (select) con estilo hover y flechita */
+.cc-card select {
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  background-color: var(--nav-footer-color);
+  color: var(--text-color);
+  transition: border-color 0.3s;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 2rem;
+  background-image:
+    url("data:image/svg+xml;charset=US-ASCII,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23d1ab4a' viewBox='0 0 16 16'%3e%3cpath d='M4.646 6.646a.5.5 0 0 1 .708 0L8 9.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
+}
+.cc-card select:hover {
+  border-color: var(--tit-champ);
+}
+
+/* Botones para quitar tips */
+.cc-tips-group button[type="button"] {
+  background: transparent;
+  border: none;
+  color: var(--border-color);
+  font-weight: bold;
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-left: 6px;
+  transition: color 0.3s;
+  user-select: none;
+}
+.cc-tips-group button[type="button"]:hover {
+  color: var(--tit-champ);
+}
+.cc-tips-group button[type="button"]:active {
+  transform: scale(0.9);
+}
+
+/* Barra de dificultad tipo LoL */
+.cc-card input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: var(--border-color);
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 0.3rem;
+}
+.cc-card input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  background: var(--tit-champ);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 6px var(--tit-champ);
+  transition: background 0.3s, box-shadow 0.3s;
+  margin-top: -6px;
+  border: 2px solid var(--nav-footer-color);
+}
+.cc-card input[type="range"]::-webkit-slider-thumb:hover {
+  background: var(--nav-footer-color);
+  box-shadow: 0 0 10px var(--tit-champ);
+}
+.cc-card input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  background: var(--tit-champ);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 6px var(--tit-champ);
+  border: 2px solid var(--nav-footer-color);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.cc-card input[type="range"]::-moz-range-thumb:hover {
+  background: var(--nav-footer-color);
+  box-shadow: 0 0 10px var(--tit-champ);
+}
+
+/* Layout habilidades en 2 columnas */
+.cc-grid {
+  display: grid;
+  gap: 1rem;
+}
+.cc-grid--2col {
+  grid-template-columns: 1fr 2fr;
+}
+@media (max-width: 800px) {
+  .cc-grid--2col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Columnas para habilidades pasivas */
+.cc-ability-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Grid para habilidades Q,W,E,R */
+.cc-ability-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+@media (max-width: 800px) {
+  .cc-ability-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Skins */
+.cc-skins-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+.cc-skin-row {
+  display: flex;
+  gap: 0.5rem;
+}
+.remove-skin-btn,
+.remove-tips-btn {
+  background: none;
+  border: none;
+  color: var(--placeholder-champs);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.remove-skin-btn:hover {
+  color: var(--border-color);
+}
+.cc-add-skin {
+  background: none;
+  border: 1px dashed var(--placeholder-champs);
+  color: var(--placeholder-champs);
+  padding: 0.5rem;
+  border-radius: 4px;
+  width: max-content;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.cc-add-skin:hover {
+  color: var(--border-color);
+}
+
+/* Botón de envío */
+.cc-submit {
+  font-family: var(--font-primary);
+  align-self: center;
+  background: var(--placeholder-champs);
+  color: var(--title-color);
+  border: none;
+  padding-block: 0.75rem;
+  padding-inline: 2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 24px var(--shadow-color);
+  transition: filter 0.2s;
+}
+.cc-submit:hover {
+  filter: brightness(1.1);
+}
+.cc-delete-btn {
+  font-family: var(--font-primary);
+  color: white;
+  font-size: 1rem;
+  margin-top: 1rem;
+  background-color: rgb(180, 6, 6);
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+}
+.cc-delete-btn:hover {
+  filter: brightness(1.1);
+}

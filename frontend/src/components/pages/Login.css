@@ -1,0 +1,166 @@
+/* src/components/pages/Login.css
+   Estilos para la página de inicio de sesión.
+   Adaptado a un tema League of Legends moderno y responsivo.
+*/
+
+/* Contenedor principal */
+.login-container {
+  background-color: var(--auth-color);
+  margin-top: 13rem;
+  border: 2px solid var(--auth-border-color);
+  border-radius: 10px;
+  padding: 2.5rem;
+  width: 400px;
+  max-width: 100%;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+}
+
+/* Título */
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  text-shadow: 0 0 8px var(--auth-border-color);
+}
+
+/* Formulario */
+.login-form label {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+.login-form input {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.3rem;
+  border: 1px solid #434a5e;
+  border-radius: 4px;
+  background: var(--auth-bg-color);
+  color: var(--auth-text-color);
+  font-size: 1rem;
+  font-family: var(--font-primary);
+  height: 2.2rem;
+}
+.login-form input:focus {
+  outline: none;
+  border-color: var(--auth-border-color);
+  box-shadow: 0 0 6px var(--auth-border-color);
+}
+
+/* Botón Sign In */
+.login-form button {
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 1.4rem;
+  background: linear-gradient(135deg, var(--auth-border-color) 0%, #e0c077 100%);
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  color: var(--text-color);
+  font-family: var(--font-primary);
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.login-form button:hover {
+  box-shadow: 0 0 10px #e0c077;
+}
+.login-form button:active {
+  transform: translateY(2px);
+}
+
+/* Forgot password link */
+.link-forgot {
+  display: block;
+  margin-top: 1rem;
+  text-align: center;
+  color: #e0c077;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+.link-forgot:hover {
+  text-decoration: underline;
+}
+
+/* Guest & Register buttons */
+.auth-actions {
+  margin-top: 1.6rem;
+  display: flex;
+  gap: 0.8rem;
+}
+.auth-actions .auth-btn {
+  flex: 1;
+  padding: 0.7rem;
+  background: linear-gradient(135deg, #3f5c8c 0%, #527bbf 100%);
+  font-family: var(--font-primary);
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: var(--text-color);
+  cursor: pointer;
+  text-shadow: 0 0 4px rgba(0,0,0,0.5);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.auth-actions .auth-btn:hover {
+  box-shadow: 0 0 8px #527bbf;
+}
+.auth-actions .auth-btn:active {
+  transform: translateY(2px);
+}
+
+/* Mensaje de error */
+.error-login {
+  background: #8b0000;
+  color: #fff;
+  padding: 0.6rem;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+/* Selector de idioma */
+.auth-lang-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.auth-lang-toggle button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #8b6a16;
+  font-family: var(--font-primary);
+  cursor: pointer;
+}
+.auth-lang-toggle button:hover {
+  text-decoration: underline;
+}
+
+/* --------- Responsive --------- */
+@media (max-width: 480px) {
+  .login-container {
+    margin-top: 6rem;
+    padding: 2rem 1.5rem;
+    width: 90%;
+  }
+  .login-container h2 {
+    font-size: 1.6rem;
+  }
+  .login-form label {
+    font-size: 1rem;
+  }
+  .login-form button {
+    font-size: 1rem;
+  }
+  .link-forgot {
+    font-size: 0.85rem;
+  }
+  .auth-actions {
+    flex-direction: column;
+  }
+  .auth-actions .auth-btn {
+    width: 100%;
+  }
+}

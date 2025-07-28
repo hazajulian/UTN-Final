@@ -1,0 +1,315 @@
+/* src/components/pages/ChampionDetail.css
+   Estilos principales para el detalle de campeones, con responsividad y bloques LoL.
+*/
+
+/* Container principal */
+.cd-container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding-inline: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-family: var(--font-primary);
+}
+
+/* Toast (mensaje temporal) */
+.cd-toast {
+  position: fixed;
+  color: var(--text-color);
+  background-color: var(--nav-footer-color);
+  bottom: 1rem;
+  right: 1rem;
+  padding-block: 0.75rem;
+  padding-inline: 1.5rem;
+  border-radius: 4px;
+  box-shadow: 0 4px 24px var(--shadow-color);
+  animation: fadeToast 2s forwards;
+}
+@keyframes fadeToast {
+  0%, 80% { opacity: 1; }
+  100%    { opacity: 0; }
+}
+
+/* Loading */
+.cd-loading {
+  text-align: center;
+  padding-block: 4rem;
+  font-size: 1.1rem;
+  color: var(--loading-color);
+}
+
+/* HEADER */
+.cd-header {
+  background-color: var(--nav-footer-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--border-color);
+  padding-block: 1rem;
+  padding-inline: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px var(--shadow-color);
+}
+.cd-header div {
+  display: flex;
+  flex-direction: column;
+}
+.cd-name {
+  font-size: 2.4rem;
+  margin: 0;
+  color: var(--border-color);
+}
+.cd-title {
+  font-size: 1rem;
+  font-style: italic;
+  margin-block-start: 0.25rem;
+  color: var(--text-color);
+}
+.cd-fav-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--border-color);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.cd-fav-btn:hover {
+  color: var(--border-color);
+}
+
+/* SKINS CAROUSEL */
+.cd-skins {
+  background-color: var(--nav-footer-color);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px var(--shadow-color);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+.cd-skin-nav {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 2rem;
+  cursor: pointer;
+  padding-inline: 1rem;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+.cd-skin-nav:hover {
+  color: var(--placeholder-champs);
+}
+.cd-skin-img {
+  max-height: 400px;
+  width: auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transition: transform 0.3s;
+}
+.cd-skin-img:hover {
+  transform: scale(1.02);
+}
+.cd-skin-name {
+  position: absolute;
+  bottom: 0.8rem;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding-block: 0.3rem;
+  padding-inline: 0.6rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* INFO + DIFFICULTY CONTENEDOR */
+.cd-info-diff {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.cd-basic-info,
+.cd-difficulty {
+  flex: 1 1 300px;
+  background: var(--nav-footer-color);
+  padding-block: 1rem;
+  padding-inline: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+
+/* BASIC INFO */
+.cd-basic-info h2 {
+  margin-top: 0;
+  color: var(--border-color);
+}
+.cd-basic-info p {
+  margin-block: 0.5rem;
+  line-height: 1.4;
+  color: var(--text-color);
+}
+
+/* DIFFICULTY */
+.cd-difficulty h2 {
+  margin-top: 0;
+  color: var(--border-color);
+}
+.cd-diff-bars {
+  display: flex;
+  gap: 0.5rem;
+  margin-block-start: 0.5rem;
+}
+.cd-diff-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(214, 181, 103, 0.3); /* dorado tenue */
+  border-radius: 4px;
+}
+.cd-diff-bar.filled {
+  background: var(--border-color);
+}
+
+/* STATS GRID */
+.cd-stats-section {
+  margin-block-start: 1rem;
+}
+.cd-stats-grid {
+  background-color: var(--nav-footer-color);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding-block: 1rem;
+  padding-inline: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+.cd-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cd-stat-name {
+  font-weight: bold;
+  color: var(--border-color);
+  margin-block-end: 0.25rem;
+  text-transform: capitalize;
+}
+.cd-stat-value {
+  color: var(--text-color);
+}
+
+/* LORE */
+.cd-lore {
+  background-color: var(--nav-footer-color);
+  padding-block: 1rem;
+  padding-inline: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+.cd-lore h2 {
+  margin-top: 0;
+  color: var(--border-color);
+}
+.cd-lore p {
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+/* TIPS */
+.cd-tips {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.cd-tip-list {
+  flex: 1 1 300px;
+  background-color: var(--nav-footer-color);
+  padding-block: 1rem;
+  padding-inline: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+.cd-tip-list h2 {
+  margin-top: 0;
+  color: var(--border-color);
+}
+.cd-tip-list ul {
+  list-style: disc inside;
+  margin-block-start: 0.5rem;
+}
+.cd-tip-list li {
+  margin-block-end: 0.5rem;
+  line-height: 1.4;
+  color: var(--text-color);
+}
+
+/* ABILITIES */
+.cd-abilities {
+  background-color: var(--nav-footer-color);
+  padding-block: 1rem;
+  padding-inline: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+.cd-abilities h2 {
+  margin-top: 0;
+  color: var(--border-color);
+}
+.cd-ability {
+  display: flex;
+  gap: 0.75rem;
+  margin-block-end: 1rem;
+}
+.cd-ability-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+.cd-ability h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--border-color);
+}
+.cd-ability p {
+  margin-block-start: 0.25rem;
+  line-height: 1.4;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+/* ----------- MEDIA QUERIES ----------- */
+@media (max-width: 730px) {
+  .cd-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  .cd-skins {
+    flex-direction: column;
+    padding-block: 0.5rem;
+  }
+  .cd-skin-nav.prev {
+    position: absolute; top: 50%; left: 0.5rem;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+  }
+  .cd-skin-nav.next {
+    position: absolute; top: 50%; right: 0.5rem;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+  }
+  .cd-info-diff {
+    flex-direction: column;
+  }
+  .cd-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

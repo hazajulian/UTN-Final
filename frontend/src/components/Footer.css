@@ -1,0 +1,27 @@
+/* src/components/Footer.css
+   Estilos principales para el Footer, siguiendo el diseño League of Legends.
+*/
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 0.5rem;
+  padding-inline: 4rem;
+  border-bottom: 1.5px solid var(--border-color);
+  border-top: 1.5px solid var(--border-color);
+  background: var(--nav-footer-color);
+  margin-top: auto;
+}
+
+footer a,
+footer span {
+  color: var(--border-color);
+  font-family: var(--font-primary);
+}

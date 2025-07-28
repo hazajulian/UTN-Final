@@ -1,0 +1,227 @@
+/* src/components/pages/Home.css
+   Estilos para la página principal (Home) de campeones.
+   Adaptado a tema League of Legends, moderno y responsivo.
+*/
+
+/* Contenedor principal */
+.home-container {
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Título y stick decorativo */
+.home-stick {
+  height: 7vh;
+  width: 15vh;
+}
+.home-title {
+  font-size: 5rem;
+  font-family: var(--font-primary);
+  color: var(--title-color);
+}
+
+/* Searchbar y filtro */
+.search-container {
+  position: relative;          
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.search-bg {
+  margin-top: 1rem;
+  position: absolute;
+  height: 70vh;
+  width: 80vh;
+  z-index: 1;
+  pointer-events: none;
+}
+.search-overlay {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 8vh;
+  width: 62vh;
+  position: relative;
+  z-index: 2;
+}
+.filter-dropdown {
+  position: relative;
+}
+.filter-btn {
+  background: transparent;
+  border: none;
+  font-family: var(--font-primary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--title-color);    
+  transition: color 0.2s;
+}
+.filter-btn--active,
+.filter-btn:hover {
+  color: var(--shadow-nav-txt);
+}
+.filter-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  background: var(--back-filter);
+  border: 1px solid var(--border-color);
+  border-radius: 0;
+  box-shadow: 0 4px 24px var(--shadow-color);
+  z-index: 10;
+}
+.filter-list-item {
+  padding: 0.5rem 1rem;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  text-transform: lowercase;
+}
+.filter-list-item:hover {
+  background: var(--border-color);
+  color: #050b15;
+}
+
+/* Contenedor general de la Home */
+.home { 
+  overflow-anchor: none;
+  margin-bottom: 2rem; 
+}
+
+/* Grid principal de campeones */
+.home-grid {
+  padding-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(5, 19vh);
+  gap: 2rem;
+  justify-content: center;
+}
+
+/* Secciones por posición, región, rol */
+.home-section-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-primary);
+  font-size: 2.7rem;
+  margin-block: 1.2rem;
+  color: var(--placeholder-champs);
+}
+.home-section-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 19vh);
+  gap: 2rem;
+  justify-content: center;
+}
+
+/* Tarjeta de campeón */
+.home-card {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--border-color);
+  padding: 0.25rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.home-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+.home-card .home-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* --------- Responsive --------- */
+
+/* Pantallas <= 1080px */
+@media (max-width: 1080px) {
+  .home-section {
+    padding-inline: 5rem;
+  }
+  .home-grid,
+  .home-section-grid {
+    grid-template-columns: repeat(4, 19vh);
+    gap: 1.5rem;
+  }
+  .home-title {
+    font-size: 4rem;
+  }
+}
+
+/* Pantallas <= 830px */
+@media (max-width: 830px) {
+  .home-section {
+    padding-inline: 3rem;
+  }
+  .home-grid,
+  .home-section-grid {
+    grid-template-columns: repeat(3, 16vh);
+    gap: 1.25rem;
+  }
+  .home-title {
+    font-size: 3.5rem;
+  }
+  .search-container{
+    padding-inline: 14rem;
+  }
+  .search-bg {
+    height: 60vh;
+    width: 52vh;
+  }
+  .filter-btn {
+    padding-right: 1rem;
+  }
+  .home-section-title {
+    font-size: 2rem;
+  }
+}
+
+/* Pantallas <= 700px */
+@media (max-width: 700px) {
+  .home-section {
+    padding-inline: 2rem;
+  }
+  .home-grid,
+  .home-section-grid {
+    grid-template-columns: repeat(2, 13vh);
+    gap: 1rem;
+  }
+  .home-title {
+    font-size: 2.8rem;
+  }
+  .home-stick {
+    height: 5vh;
+    width: 10vh;
+  }
+  .search-bg {
+    height: 50vh;
+    width: 45vh;
+  }
+  .search-overlay {
+    width: 90vw;
+    height: 7vh;
+  }
+  .filter-btn {
+    font-size: 1rem;
+    padding-right: 1rem;
+  }
+  .filter-list-item {
+    font-size: 0.8rem;
+  }
+  .home-section-title{
+    font-size: 1.7rem;
+  }
+}

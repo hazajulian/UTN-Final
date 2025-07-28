@@ -1,0 +1,154 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "API de Campeones v1",
+    "version": "1.0.0",
+    "description": "API pública para consultar campeones de League of Legends (solo endpoints GET).\n\nPara acceder a rutas protegidas (crear, actualizar, eliminar campeones o endpoints de usuario), debes estar autenticado y verificado (se requiere JWT)."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3010/api/v1",
+      "description": "Servidor local"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Campeones",
+      "description": "Operaciones públicas sobre campeones"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "ChampionSummary": {
+        "type": "object",
+        "required": ["id", "name", "positions", "region"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "title": { "type": "string" },
+          "iconUrl": { "type": "string", "format": "uri" },
+          "region": { "type": "string" },
+          "positions": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "Champion": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ChampionSummary" },
+          {
+            "type": "object",
+            "properties": {
+              "lore": { "type": "string" },
+              "allytips": { "type": "array", "items": { "type": "string" } },
+              "enemytips": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        ]
+      },
+      "PaginatedChampionSummaries": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "total": { "type": "integer" },
+              "offset": { "type": "integer" },
+              "limit": { "type": "integer" },
+              "totalPages": { "type": "integer" }
+            }
+          },
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ChampionSummary" }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/champions": {
+      "get": {
+        "tags": ["Campeones"],
+        "summary": "Listar todos los campeones",
+        "description": "Devuelve una lista paginada de todos los campeones de League of Legends. Puedes usar 'limit' y 'offset' para paginar los resultados.",
+        "parameters": [
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "default": 20 }, "description": "Cantidad de campeones a devolver (por defecto: 20)" },
+          { "name": "offset", "in": "query", "schema": { "type": "integer", "default": 0 }, "description": "Cantidad de campeones a omitir (por defecto: 0)" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista paginada de campeones",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/PaginatedChampionSummaries" },
+                "example": {
+                  "meta": {
+                    "total": 171,
+                    "offset": 0,
+                    "limit": 2,
+                    "totalPages": 86
+                  },
+                  "data": [
+                    {
+                      "id": "aatrox",
+                      "name": "Aatrox",
+                      "title": "la Hoja Oscura",
+                      "iconUrl": "https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/Aatrox.png",
+                      "region": "Runeterra",
+                      "positions": ["Top", "Mid"]
+                    },
+                    {
+                      "id": "ahri",
+                      "name": "Ahri",
+                      "title": "la Zorra de Nueve Colas",
+                      "iconUrl": "https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/Ahri.png",
+                      "region": "Ionia",
+                      "positions": ["Mid"]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/champions/{id}": {
+      "parameters": [
+        { "name": "id", "in": "path", "required": true, "schema": { "type": "string" }, "description": "ID único del campeón (ej., aatrox, ahri)" }
+      ],
+      "get": {
+        "tags": ["Campeones"],
+        "summary": "Obtener detalles de un campeón por ID",
+        "description": "Devuelve la información detallada para un campeón específico, incluyendo lore y consejos.",
+        "responses": {
+          "200": {
+            "description": "Detalles del campeón",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Champion" },
+                "example": {
+                  "id": "aatrox",
+                  "name": "Aatrox",
+                  "title": "la Hoja Oscura",
+                  "iconUrl": "https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/Aatrox.png",
+                  "region": "Runeterra",
+                  "positions": ["Top", "Mid"],
+                  "lore": "Antiguos defensores honorables de Shurima contra el Vacío, Aatrox y sus hermanos se convirtieron en una amenaza aún mayor para Runeterra, y fueron derrotados solo por la astucia de la hechicería mortal.",
+                  "allytips": [
+                    "Puedes usar la Q de Aatrox para hostigar a los enemigos desde una distancia segura.",
+                    "Coordina tu control de masas con tu equipo para maximizar la pasiva de Aatrox."
+                  ],
+                  "enemytips": [
+                    "Evita pelear contra Aatrox cuando su pasiva esté activa.",
+                    "Intenta atraer su Q antes de comenzar la pelea."
+                  ]
+                }
+              }
+            }
+          },
+          "404": { "description": "Campeón no encontrado" }
+        }
+      }
+    }
+  }
+}

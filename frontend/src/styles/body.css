@@ -1,0 +1,52 @@
+/* body.css — Estilo global para body, fondos y capas visuales */
+
+/* Estilo general para páginas con fondo especial */
+body.global-body-style {
+  position: relative;
+  background-color: var(--background-color);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  transition: background-color 0.5s ease;
+}
+
+/* Imagen decorativa fija y opaca (fondo "vapor") */
+body.global-body-style::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url('../assets/vapor.png') no-repeat center center / cover;
+  opacity: var(--image-opacity-light);
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity 0.5s ease;
+}
+
+/* Gradiente para efecto visual sobre fondo */
+body.global-body-style::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: var(--gradiante-fond);
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: multiply;
+  transition: background 0.5s ease;
+}
+
+/* Estilo para páginas de auth/sin fondo especial */
+body.no-global-body-style,
+body.auth-page {
+  background-color: var(--auth-bg-color);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../assets/back1.jpg');
+  background-size: cover;
+  background-position: center;
+  font-family: var(--font-primary);
+  color: var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+}

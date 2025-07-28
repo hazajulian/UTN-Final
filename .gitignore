@@ -1,0 +1,12 @@
+# Ignorar node_modules en backend y frontend
+/backend/node_modules/
+/frontend/node_modules/
+
+# Ignorar node_modules en cualquier carpeta
+node_modules/
+**/node_modules/
+
+# Ignorar logs
+*.log
+
+# Ignorar carpetas de build/dist (si aplican)

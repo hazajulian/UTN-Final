@@ -1,0 +1,154 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Champions API v1",
+    "version": "1.0.0",
+    "description": "Public API for querying League of Legends champions (GET endpoints only).\n\nTo access protected routes (create, update, delete champions, or user endpoints), you must be an authenticated and verified user (JWT required)."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3010/api/v1",
+      "description": "Local server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Champions",
+      "description": "Public operations on champions"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "ChampionSummary": {
+        "type": "object",
+        "required": ["id", "name", "positions", "region"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "title": { "type": "string" },
+          "iconUrl": { "type": "string", "format": "uri" },
+          "region": { "type": "string" },
+          "positions": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "Champion": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ChampionSummary" },
+          {
+            "type": "object",
+            "properties": {
+              "lore": { "type": "string" },
+              "allytips": { "type": "array", "items": { "type": "string" } },
+              "enemytips": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        ]
+      },
+      "PaginatedChampionSummaries": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "total": { "type": "integer" },
+              "offset": { "type": "integer" },
+              "limit": { "type": "integer" },
+              "totalPages": { "type": "integer" }
+            }
+          },
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ChampionSummary" }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/champions": {
+      "get": {
+        "tags": ["Champions"],
+        "summary": "List all champions",
+        "description": "Returns a paginated list of all League of Legends champions. You can use 'limit' and 'offset' to paginate results.",
+        "parameters": [
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "default": 20 }, "description": "How many champions to return (default: 20)" },
+          { "name": "offset", "in": "query", "schema": { "type": "integer", "default": 0 }, "description": "How many champions to skip (default: 0)" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated list of champions",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/PaginatedChampionSummaries" },
+                "example": {
+                  "meta": {
+                    "total": 171,
+                    "offset": 0,
+                    "limit": 2,
+                    "totalPages": 86
+                  },
+                  "data": [
+                    {
+                      "id": "aatrox",
+                      "name": "Aatrox",
+                      "title": "the Darkin Blade",
+                      "iconUrl": "https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/Aatrox.png",
+                      "region": "Runeterra",
+                      "positions": ["Top", "Mid"]
+                    },
+                    {
+                      "id": "ahri",
+                      "name": "Ahri",
+                      "title": "the Nine-Tailed Fox",
+                      "iconUrl": "https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/Ahri.png",
+                      "region": "Ionia",
+                      "positions": ["Mid"]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/champions/{id}": {
+      "parameters": [
+        { "name": "id", "in": "path", "required": true, "schema": { "type": "string" }, "description": "Champion's unique id (e.g., aatrox, ahri)" }
+      ],
+      "get": {
+        "tags": ["Champions"],
+        "summary": "Get champion details by ID",
+        "description": "Returns the detailed information for a specific champion, including lore and tips.",
+        "responses": {
+          "200": {
+            "description": "Champion details",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Champion" },
+                "example": {
+                  "id": "aatrox",
+                  "name": "Aatrox",
+                  "title": "the Darkin Blade",
+                  "iconUrl": "https://ddragon.leagueoflegends.com/cdn/14.14.1/img/champion/Aatrox.png",
+                  "region": "Runeterra",
+                  "positions": ["Top", "Mid"],
+                  "lore": "Once honored defenders of Shurima against the Void, Aatrox and his brethren would become an even greater threat to Runeterra, and were eventually defeated only by cunning mortal sorcery.",
+                  "allytips": [
+                    "You can use Aatrox's Q to poke enemies from a safe distance.",
+                    "Coordinate your crowd control with your team to maximize Aatrox's passive."
+                  ],
+                  "enemytips": [
+                    "Avoid fighting Aatrox when his passive is ready.",
+                    "Try to bait out his Q before engaging in a fight."
+                  ]
+                }
+              }
+            }
+          },
+          "404": { "description": "Champion not found" }
+        }
+      }
+    }
+  }
+}

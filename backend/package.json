@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:mysql": "node --warch startpoint/mysql.js",
+    "dev:mongo": "node --watch startpoint/mongo.js",
+    "dev": "node --watch config/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "5.1.0",
+    "express-rate-limit": "^8.0.1",
+    "mongoose": "^8.16.3",
+    "nodemailer": "^7.0.5",
+    "swagger-ui-react": "^5.27.0",
+    "zod": "^4.0.5"
+  }
+}
