@@ -5,8 +5,16 @@ import { useAuth } from '../../context/AuthContext';
 import { sendContact } from '../../services/api'; // Envía mensaje al backend
 import './Contact.css';
 
+// Traducciones
+import { en } from '../../i18n/en';
+import { es } from '../../i18n/es';
+
 export default function Contact() {
   const { user } = useAuth();
+
+  // Idioma persistente
+  const lang = localStorage.getItem('lang') || 'EN';
+  const t = lang === 'EN' ? en : es;
 
   // Estados del formulario
   const [subject, setSubject] = useState('');
@@ -33,19 +41,20 @@ export default function Contact() {
 
   return (
     <div className="contact-container">
-      <h1>Contacto</h1>
+      <h1>{t.contact.title}</h1>
 
       {/* Aviso si no está logueado */}
       {!user && (
-        <p className="login-note">
-          Debes <a href="/login">iniciar sesión</a> para enviar un mensaje.
-        </p>
+        <p
+          className="login-note"
+          dangerouslySetInnerHTML={{ __html: t.contact.loginNote }}
+        />
       )}
 
       {/* Formulario */}
       <form onSubmit={handleSubmit} className="contact-form">
         <label>
-          Asunto
+          {t.contact.subject}
           <input
             type="text"
             value={subject}
@@ -56,7 +65,7 @@ export default function Contact() {
           />
         </label>
         <label>
-          Mensaje
+          {t.contact.message}
           <textarea
             value={message}
             onChange={e => setMessage(e.target.value)}
@@ -67,13 +76,13 @@ export default function Contact() {
           />
         </label>
         <button type="submit" disabled={!user || loading}>
-          {loading ? 'Enviando...' : 'Enviar'}
+          {loading ? t.contact.sending : t.contact.send}
         </button>
 
         {/* Estado */}
-        {status === 'success' && <p className="success">¡Tu mensaje ha sido enviado!</p>}
-        {status === 'auth' && <p className="error">Debes iniciar sesión para enviar un mensaje.</p>}
-        {status === 'error' && <p className="error">Error al enviar. Intenta más tarde.</p>}
+        {status === 'success' && <p className="success">{t.contact.success}</p>}
+        {status === 'auth'    && <p className="error">{t.contact.authError}</p>}
+        {status === 'error'   && <p className="error">{t.contact.error}</p>}
         {typeof status === 'string' && !['success', 'auth', 'error'].includes(status) && (
           <p className="error">{status}</p>
         )}
@@ -81,10 +90,18 @@ export default function Contact() {
 
       {/* Redes sociales */}
       <div className="social-links">
-        <a href="https://www.youtube.com/leagueoflegends" target="_blank" rel="noopener noreferrer" className="social-btn youtube">YouTube</a>
-        <a href="https://www.leagueoflegends.com/es-mx" target="_blank" rel="noopener noreferrer" className="social-btn website">Sitio Oficial</a>
-        <a href="https://www.instagram.com/leagueoflegends" target="_blank" rel="noopener noreferrer" className="social-btn instagram">Instagram</a>
-        <a href="https://twitter.com/LeagueOfLegends" target="_blank" rel="noopener noreferrer" className="social-btn twitter">Twitter</a>
+        <a href="https://www.youtube.com/leagueoflegends" target="_blank" rel="noopener noreferrer" className="social-btn youtube">
+          {t.contact.social.youtube}
+        </a>
+        <a href="https://www.leagueoflegends.com/es-mx" target="_blank" rel="noopener noreferrer" className="social-btn website">
+          {t.contact.social.website}
+        </a>
+        <a href="https://www.instagram.com/leagueoflegends" target="_blank" rel="noopener noreferrer" className="social-btn instagram">
+          {t.contact.social.instagram}
+        </a>
+        <a href="https://twitter.com/LeagueOfLegends" target="_blank" rel="noopener noreferrer" className="social-btn twitter">
+          {t.contact.social.twitter}
+        </a>
       </div>
     </div>
   );
